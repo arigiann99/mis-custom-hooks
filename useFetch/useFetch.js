@@ -10,7 +10,8 @@ export const useFetch = ( url ) => {
         return () => {
             isMounted.current = false;
         }
-    }, []);
+    }, [])
+
 
     useEffect( () => {
 
@@ -28,9 +29,16 @@ export const useFetch = ( url ) => {
                     });
                 }
 
-            });
+            })
+            .catch( () => {
+                setState({
+                    data: null,
+                    loading: false,
+                    error: 'No se pudo cargar la info'
+                })
+            })
 
-    },[url]);
+    },[url])
 
     return state;
 }
